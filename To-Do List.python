@@ -1,0 +1,67 @@
+# Welcome message
+print("Welcome to the To-Do List Project!")
+
+# Initialize an empty list to store tasks
+tasks = []
+
+# Function to add tasks to the to-do list
+def add_tasks():
+    task_input = input("Enter the tasks you want to add (comma-separated): ")
+    new_tasks = [task.strip() for task in task_input.split(',')]
+    tasks.extend(new_tasks)
+    print("Tasks added successfully!")
+
+# Function to delete a task from the to-do list
+def delete_task():
+    if not tasks:
+        print("No tasks to delete. To-Do list is empty.")
+        return
+
+    print("Current tasks:")
+    list_tasks()
+    task_index = int(input("Enter the index of the task you want to delete: "))
+
+    if 0 <= task_index < len(tasks):
+        deleted_task = tasks.pop(task_index)
+        print(f"Task '{deleted_task}' deleted successfully!")
+    else:
+        print("Invalid index. No task deleted.")
+
+# Function to list all tasks in the to-do list
+def list_tasks():
+    if not tasks:
+        print("To-Do list is empty.")
+    else:
+        print("Current tasks:")
+        for index, task in enumerate(tasks):
+            print(f"{index}. {task}")
+
+# Function to quit the application
+def quit_app():
+    print("Thank you for using the To-Do List. Have a great day!")
+    exit()
+
+# Main loop
+while True:
+    # Display menu
+    print("\nMenu:")
+    print("1. Add Tasks")
+    print("2. Delete Task")
+    print("3. List Tasks")
+    print("4. Quit")
+
+    # Get user choice
+    choice = input("Enter your choice (1-4): ")
+
+    # Perform the chosen action
+    if choice == "1":
+        add_tasks()
+    elif choice == "2":
+        delete_task()
+    elif choice == "3":
+        list_tasks()
+    elif choice == "4":
+        quit_app()
+    else:
+        print("Invalid choice. Please enter a number between 1 and 4.")
+
